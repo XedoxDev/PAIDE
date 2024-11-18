@@ -1,4 +1,6 @@
 # PAIDE
+Application in developing!
+
 Android IDE for Processing.
 Using gradle 8.10.
 # Thanks <3
