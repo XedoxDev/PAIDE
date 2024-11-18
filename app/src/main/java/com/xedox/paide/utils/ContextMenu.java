@@ -4,8 +4,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import androidx.appcompat.widget.PopupMenu;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ContextMenu {
 
@@ -14,11 +12,11 @@ public class ContextMenu {
     public void add(Item item) {
         menu.getMenu().add(0, item.CODE, Menu.NONE, item.title);
     }
-    
+
     public void add(int code, String title) {
         menu.getMenu().add(0, code, Menu.NONE, title);
     }
-    
+
     public void add(int code, int title) {
         menu.getMenu().add(0, code, Menu.NONE, title);
     }
@@ -29,7 +27,7 @@ public class ContextMenu {
                 new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        listener.onClick(item);
+                        listener.onClick(item, menu);
                         return true;
                     }
                 });
@@ -50,6 +48,10 @@ public class ContextMenu {
     }
 
     public static interface OnClickListener {
-        public void onClick(MenuItem item);
+        public void onClick(MenuItem item, PopupMenu menu);
+    }
+
+    public PopupMenu getMenu() {
+        return this.menu;
     }
 }

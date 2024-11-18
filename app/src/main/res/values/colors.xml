@@ -9,4 +9,6 @@
     <color name="divider">#000000</color>
     <color name="toolbarText">#ffffff</color>
     <color name="text">#000000</color>
+    <color name="selectItem">#000000</color>
+    <color name="selectItemBackground">#ffffff</color>
 </resources>

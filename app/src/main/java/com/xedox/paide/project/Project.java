@@ -4,7 +4,7 @@ import java.io.File;
 import static com.xedox.paide.PAIDE.*;
 
 public class Project {
-    
+
     private String name;
     private File src;
     private File projectDir;
@@ -18,7 +18,7 @@ public class Project {
     public void create() {
         projectDir.mkdir();
         src.mkdir();
-        File main = new File(projectDir, "src/main.pde");
+        File main = new File(src, "main.pde");
         try {
             main.createNewFile();
         } catch (Exception err) {
@@ -39,13 +39,27 @@ public class Project {
                 }
                 """);
     }
-    
-    public void delete() {
-        for(File file : src.listFiles()) {
-        	file.delete();
+
+    public void deleteDirectory(File f) {
+        File[] contents = f.listFiles();
+        if (contents != null) {
+            for (File file : contents) {
+                if (file.isFile()) {
+                    file.delete();
+                    continue;
+                }
+                deleteDirectory(file);
+            }
         }
-        new File(projectDir, "src").delete();
-        projectDir.delete();
+        f.delete();
+    }
+
+    public void deleteProject() {
+        try {
+            deleteDirectory(projectDir);
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
     }
 
     public boolean exists() {
@@ -66,5 +80,9 @@ public class Project {
 
     public void setProjectDir(File projectDir) {
         this.projectDir = projectDir;
+    }
+
+    public File getSrc() {
+        return this.src;
     }
 }

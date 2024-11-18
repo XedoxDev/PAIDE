@@ -16,4 +16,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Processing AIDE"
 include(":app")
+include(":editor")
 include(":sketch-preview")

@@ -25,7 +25,8 @@
              android:layout_height="wrap_content"
              android:layout_width="match_parent"
              app:icon="@drawable/ic_plus"
-             android:textSize="25sp"
+             app:iconSize="25dp"
+             android:textSize="20sp"
              android:id="@+id/create_project"
              android:text="@string/create_project" />
 
@@ -33,7 +34,8 @@
              android:layout_height="wrap_content"
              android:layout_width="match_parent"
              app:icon="@drawable/ic_look"
-             android:textSize="25sp"
+             app:iconSize="25dp"
+             android:textSize="20sp"
              android:id="@+id/open_project"
              android:text="@string/open_project" />
 
