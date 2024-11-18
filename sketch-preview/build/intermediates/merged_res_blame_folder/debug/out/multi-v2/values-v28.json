@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "xedox.sketch.preview.sketch-preview-mergeDebugResources-19:/values-v28/values-v28.xml",
+            "map": [
+                {
+                    "source": "/data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/86105c9c4ac56f0fbfbf6984b110c9a8/transformed/appcompat-1.6.1/res/values-v28/values-v28.xml",
+                    "from": {
+                        "startLines": "2,3,4,8",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,130,217,397",
+                        "endLines": "2,3,7,11",
+                        "endColumns": "74,86,12,12",
+                        "endOffsets": "125,212,392,584"
+                    }
+                }
+            ]
+        }
+    ]
+}

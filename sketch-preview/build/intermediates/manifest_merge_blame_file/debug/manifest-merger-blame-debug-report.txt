@@ -1,0 +1,90 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.xedox.paide"
+4    android:versionCode="1"
+5    android:versionName="v0.0.1" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="30"
+8-->/storage/emulated/0/AndroidIDEProjects/Processing AIDE/sketch-preview/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->/storage/emulated/0/AndroidIDEProjects/Processing AIDE/sketch-preview/src/main/AndroidManifest.xml
+10
+11    <queries>
+11-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:23:5-25:15
+12        <package android:name="com.itsaky.androidide" />
+12-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:24:9-57
+12-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:24:18-54
+13    </queries>
+14
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:27:5-67
+15-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:27:22-64
+16    <uses-permission android:name="com.itsaky.androidide.permission.BIND_LOG_SERVICE" />
+16-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:28:5-89
+16-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:28:22-86
+17    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+17-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:29:5-77
+17-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:29:22-74
+18
+19    <permission
+19-->[androidx.core:core:1.9.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/496d2c5bc585936df6a89907127a6236/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+20        android:name="com.xedox.paide.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+20-->[androidx.core:core:1.9.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/496d2c5bc585936df6a89907127a6236/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+21        android:protectionLevel="signature" />
+21-->[androidx.core:core:1.9.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/496d2c5bc585936df6a89907127a6236/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+22
+23    <uses-permission android:name="com.xedox.paide.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+23-->[androidx.core:core:1.9.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/496d2c5bc585936df6a89907127a6236/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+23-->[androidx.core:core:1.9.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/496d2c5bc585936df6a89907127a6236/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+24
+25    <application
+25-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:31:5-42:19
+26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+26-->[androidx.core:core:1.9.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/496d2c5bc585936df6a89907127a6236/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+27        android:debuggable="true"
+28        android:extractNativeLibs="false" >
+29        <provider
+29-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:32:9-36:40
+30            android:name="com.itsaky.androidide.logsender.utils.LogSenderInstaller"
+30-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:33:13-84
+31            android:authorities="com.xedox.paide.logsender-installer"
+31-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:34:13-71
+32            android:enabled="@bool/logsender_enabled"
+32-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:35:13-54
+33            android:exported="false" />
+33-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:36:13-37
+34
+35        <service
+35-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:38:9-41:56
+36            android:name="com.itsaky.androidide.logsender.LogSenderService"
+36-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:39:13-76
+37            android:exported="false"
+37-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:40:13-37
+38            android:foregroundServiceType="dataSync" />
+38-->[com.itsaky.androidide:logsender:2.7.1-beta] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/0c932e9f6b39069eadc1c483711f3666/transformed/logsender-2.7.1-beta-debug/AndroidManifest.xml:41:13-53
+39
+40        <provider
+40-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/54863e2d8798d42037bac58b92e621ae/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+41            android:name="androidx.startup.InitializationProvider"
+41-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/54863e2d8798d42037bac58b92e621ae/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+42            android:authorities="com.xedox.paide.androidx-startup"
+42-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/54863e2d8798d42037bac58b92e621ae/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+43            android:exported="false" >
+43-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/54863e2d8798d42037bac58b92e621ae/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+44            <meta-data
+44-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/54863e2d8798d42037bac58b92e621ae/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+45                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+45-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/54863e2d8798d42037bac58b92e621ae/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+46                android:value="androidx.startup" />
+46-->[androidx.emoji2:emoji2:1.2.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/54863e2d8798d42037bac58b92e621ae/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+47            <meta-data
+47-->[androidx.lifecycle:lifecycle-process:2.4.1] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/d3b186d59d58b93bd1395d3fddd6c448/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+48                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+48-->[androidx.lifecycle:lifecycle-process:2.4.1] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/d3b186d59d58b93bd1395d3fddd6c448/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+49                android:value="androidx.startup" />
+49-->[androidx.lifecycle:lifecycle-process:2.4.1] /data/data/com.itsaky.androidide/files/home/.gradle/caches/8.10/transforms/d3b186d59d58b93bd1395d3fddd6c448/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+50        </provider>
+51    </application>
+52
+53</manifest>
