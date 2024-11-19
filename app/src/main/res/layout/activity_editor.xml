@@ -2,29 +2,82 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
     <include
-        layout="@layout/toolbar" />
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:layout_height="40dp"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:background="@color/primaryVariant"
-        app:tabIndicatorColor="@color/toolbarText"
-        app:tabSelectedTextColor="@color/selectItem"
-        android:id="@+id/tabs"
-        app:tabBackground="@drawable/ic_indicator"
-        app:tabTextColor="@color/primaryDark" 
-        app:tabIndicatorAnimationMode="elastic"
-        app:tabMode="scrollable"/>
-    
-    <androidx.viewpager2.widget.ViewPager2
+    <androidx.drawerlayout.widget.DrawerLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_below="@+id/tabs"
-        android:id="@+id/viewPager" />
+        android:id="@+id/drawer_layout"
+        tools:context=".activitys.EditorActivity"
+        android:layout_below="@id/toolbar">
 
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/main_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.tabs.TabLayout
+                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                app:tabMode="scrollable"
+                android:background="@color/primaryVariant"
+                app:tabIndicatorColor="@color/selectItemBackground"
+                app:tabIndicator="@drawable/ic_indicator"
+                app:tabTextColor="@color/primaryDark"
+                app:tabIndicatorHeight="35dp"
+                app:tabIndicatorFullWidth="false"
+                app:tabSelectedTextColor="@color/selectItem"
+                android:id="@+id/tabs" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/viewPager" />
+
+        </LinearLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_gravity="start"
+            android:id="@+id/drawer_content">
+            
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@color/primaryVariant"
+                android:id="@+id/panel">
+
+                <ImageButton
+                    android:layout_height="50dp"
+                    android:layout_width="50dp"
+                    android:src="@drawable/ic_folder"
+                    style="@style/Widget.AppCompat.ActionButton"
+                    android:id="@+id/mkdir" />
+
+                <ImageButton
+                    android:layout_height="50dp"
+                    android:layout_width="50dp"
+                    android:src="@drawable/ic_new_file"
+                    style="@style/Widget.AppCompat.ActionButton"
+                    android:id="@+id/createFile" />
+
+            </LinearLayout>
+            
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/files_list"/>
+                
+        </com.google.android.material.navigation.NavigationView>
+        
+    </androidx.drawerlayout.widget.DrawerLayout>
+    
 </RelativeLayout>
