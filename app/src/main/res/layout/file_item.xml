@@ -5,19 +5,21 @@
      android:layout_height="40dp"
      android:layout_width="match_parent">
 
-    <ImageView
-         android:layout_height="40dp"
-         android:layout_width="40dp"
+    <ImageButton
+         android:layout_height="50dp"
+         android:layout_width="50dp"
          android:src="@drawable/ic_unknown_file"
+         android:tint="@color/icon_in_drawer"
+         style="@style/Widget.AppCompat.ActionButton"
          android:id="@+id/icon" />
 
     <TextView
          android:layout_height="40dp"
          android:layout_width="match_parent"
          android:gravity="start"
+         android:padding="2dp"
          android:textSize="20sp"
          android:layout_toRightOf="@+id/icon"
-         android:id="@+id/fileName"
-        android:padding="2dp" />
+         android:id="@+id/fileName" />
 
 </RelativeLayout>

@@ -21,4 +21,11 @@
     <!-- settings -->
     <string name="settings">Настройки</string>
     
+    <!-- errs -->
+    <string name="err1">Не удалось определить тип файла.</string>
+    
+    <!-- menus -->
+    <string name="save">Сохранить</string>
+    <string name="run">Запустить</string>
+    <string name="format_code">Форматировать код</string>
 </resources>

@@ -37,4 +37,14 @@ public class SketchFile extends File {
         	err.printStackTrace();
         }
     }
+    
+    public String getNameNoExtension() {
+        String name = super.getName();
+        return name.substring(0, name.lastIndexOf(".")-1);
+    }
+    
+    public String getExtension() {
+        String name = super.getName();
+        return name.substring(name.lastIndexOf("."), name.length());
+    }
 }

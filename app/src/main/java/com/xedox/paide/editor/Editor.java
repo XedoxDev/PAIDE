@@ -8,8 +8,17 @@ public interface Editor {
     public void setTextSize(float newSize);
     public void setCode(String newCode);
     
+    public void undo();
+    public void redo();
+    
     public float getTextSize();
     public String getCode();
     
     public View getView();
+    
+    public void addChangesListener(ChangesListener cl); // for tab add "*"
+    
+    public static interface ChangesListener {
+        public void change();
+    }
 }

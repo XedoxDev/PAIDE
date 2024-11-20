@@ -33,7 +33,6 @@ public class TabsAdapter extends FragmentStateAdapter {
 
     public void add(SketchFile file) {
         var ef = new EditorFragment(Editor.SORA_EDITOR, file);
-        ef.getEditor().setCode(file.read());
         list.add(ef);
         
         notifyItemInserted(list.size() - 1);

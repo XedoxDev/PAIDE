@@ -36,10 +36,15 @@ android {
 }
 
 dependencies {
+    //androidx & material design
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     
+    // Sora Editor
     implementation(platform("io.github.Rosemoe.sora-editor:bom:0.23.2"))
     implementation("io.github.Rosemoe.sora-editor:editor")
     implementation("io.github.Rosemoe.sora-editor:language-textmate")
+ 
+    // other libs
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
