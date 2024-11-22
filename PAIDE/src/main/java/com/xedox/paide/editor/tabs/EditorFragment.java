@@ -47,11 +47,17 @@ public class EditorFragment extends Fragment {
 
         switch (type) {
             case Editor.SORA_EDITOR:
-                editor = new SoraEditor(requireContext());
-                SoraEditor soraEditor = (SoraEditor) editor;
-                String languageScopeName = "source" + sketch.getName().substring(sketch.getName().lastIndexOf("."), sketch.getName().length());
-                TextMateLanguage language = null;
-                if (languageScopeName != null) {
+                {
+                    editor = new SoraEditor(requireContext());
+                    SoraEditor soraEditor = (SoraEditor) editor;
+                    String languageScopeName =
+                            "source"
+                                    + sketch.getName()
+                                            .substring(
+                                                    sketch.getName().lastIndexOf("."),
+                                                    sketch.getName().length());
+                    TextMateLanguage language = null;
+
                     try {
                         language = TextMateLanguage.create(languageScopeName, true);
                     } catch (Exception e) {
@@ -60,37 +66,29 @@ public class EditorFragment extends Fragment {
                                 "Error creating TextMateLanguage: " + languageScopeName,
                                 e);
                     }
-                }
 
-                if (language != null) {
-                    soraEditor.setEditorLanguage(language);
-                } else {
-                    language = TextMateLanguage.create("source.plain.text", true);
                     if (language != null) {
                         soraEditor.setEditorLanguage(language);
-                    } else {
-                        Log.e("EditorFragment", "Failed to load default language!");
                     }
+                    editor.getView().setLayoutParams(layoutParams);
+                    try {
+                        editor.setCode(sketch.read());
+                    } catch (Exception e) {
+                        Log.e("EditorFragment", "Error reading file content", e);
+                    }
+                    break;
                 }
-                editor.getView().setLayoutParams(layoutParams);
-                try {
-                    editor.setCode(sketch.read());
-                } catch (Exception e) {
-                    Log.e("EditorFragment", "Error reading file content", e);
-                }
-                break;
         }
 
-        if (editor != null) {
-            parent.addView(editor.getView());
-        }
+        parent.addView(editor.getView());
+
         return parent;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (editor != null) {
+        if (editor != null && editor instanceof SoraEditor) {
             ((SoraEditor) editor).release();
         }
     }

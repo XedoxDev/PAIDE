@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -27,16 +28,18 @@ public class FilesListAdapter extends RecyclerView.Adapter<FilesListAdapter.VH> 
 
     public class VH extends RecyclerView.ViewHolder {
         public View parent;
-        public ImageView icon;
+        public View bg;
+        public ImageButton icon;
         public TextView name;
 
         public VH(@NonNull View parent) {
             super(parent);
             this.parent = parent;
+            bg = parent.findViewById(R.id.bg);
             icon = parent.findViewById(R.id.icon);
             name = parent.findViewById(R.id.fileName);
 
-            parent.setOnClickListener(
+            bg.setOnClickListener(
                     v -> {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION && onItemClickListener != null) {

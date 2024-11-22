@@ -1,6 +1,5 @@
 package com.xedox.paide.activitys;
 
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,13 +17,14 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.xedox.paide.R;
+import com.xedox.paide.dialogs.CreateFileDialog;
 import com.xedox.paide.drawer.files.FilesListAdapter;
 import com.xedox.paide.editor.Editor;
 import com.xedox.paide.editor.editors.soraeditor.SoraEditor;
 import com.xedox.paide.editor.tabs.EditorFragment;
 import com.xedox.paide.editor.tabs.TabsAdapter;
 import com.xedox.paide.project.Project;
-import com.xedox.paide.tools.AutoFormat;
+import com.xedox.paide.tools.CodeFormat;
 import com.xedox.paide.utils.ContextMenu;
 import com.xedox.paide.utils.SketchFile;
 import io.github.rosemoe.sora.util.ArrayList;
@@ -45,7 +45,7 @@ public class EditorActivity extends AppCompatActivity {
     private FilesListAdapter filesAdapter;
 
     private ImageButton backDir;
-
+    private ImageButton mkdir, mkfile;
     private ImageButton undo, redo;
 
     @Override
@@ -61,7 +61,18 @@ public class EditorActivity extends AppCompatActivity {
         backDir = findViewById(R.id.backDir);
         undo = findViewById(R.id.undo);
         redo = findViewById(R.id.redo);
+        mkfile = findViewById(R.id.mkfile);
+        mkdir = findViewById(R.id.mkdir);
+
         toolbar.setTitle(name);
+
+        mkfile.setOnClickListener(
+                (v) -> {
+                    CreateFileDialog d = new CreateFileDialog(this, currentDir);
+                    d.build();
+                    d.show();
+                });
+
         backDir.setOnClickListener(
                 (v) -> {
                     toParentDirectory();
@@ -140,9 +151,7 @@ public class EditorActivity extends AppCompatActivity {
         refreshFileList();
         files.setAdapter(filesAdapter);
 
-        drawerToggle =
-                new ActionBarDrawerToggle(
-                        this, drawer, toolbar, R.drawable.ic_look, R.drawable.ic_plus);
+        drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, 0, 0);
         drawer.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
     }
@@ -161,19 +170,22 @@ public class EditorActivity extends AppCompatActivity {
 
     private void openFile(File file) {
         try {
-            SketchFile sf = new SketchFile(file);
+            SketchFile sf = new SketchFile(project.getSrc(), file.getName());
             for (int i = 0; i < tabs.getTabCount(); i++) {
                 if (tabs.getTabAt(i).getText().toString().equals(sf.getName())) {
                     return;
                 }
             }
-            adapter.add(sf);
+            if (sf.isFile()) {
+
+                adapter.add(sf);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void refreshFileList() {
+    public void refreshFileList() {
         List<File> f = Arrays.asList(currentDir.listFiles());
         if (f != null && f.size() > 0) {
             filesAdapter.setList(f);
@@ -214,13 +226,16 @@ public class EditorActivity extends AppCompatActivity {
             for (EditorFragment ef : adapter.getEditors()) {
                 ef.save();
             }
-            /*Intent i = new Intent(this, PreviewActivity.class);
+            /*
+            Intent i = new Intent(this, PreviewActivity.class);
             i.putExtra("name", project.getName());
             startActivity(i);
-            finish();*/
+            finish();
+            */
         }
         if (item.getItemId() == R.id.format_code) {
-            AutoFormat.formate(adapter.getEditorFragment(tabs.getSelectedTabPosition()).getEditor());
+            CodeFormat.formate(
+                    adapter.getEditorFragment(tabs.getSelectedTabPosition()).getEditor());
         }
         return super.onOptionsItemSelected(item);
     }

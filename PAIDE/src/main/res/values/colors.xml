@@ -6,10 +6,11 @@
     <color name="primaryDark">#016469</color>
     <color name="toolbar">#016469</color>
     <color name="tint">#ffffff</color>
-    <color name="divider">#000000</color>
+    <color name="tintDark">#000000</color>
     <color name="icon_in_drawer">#000000</color>
     <color name="toolbarText">#ffffff</color>
     <color name="text">#000000</color>
+    <color name="rvi_ripple">#50016469</color>
     <color name="selectItem">#000000</color>
     <color name="selectItemBackground">#ffffff</color>
 </resources>

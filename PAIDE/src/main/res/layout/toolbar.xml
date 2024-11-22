@@ -7,6 +7,5 @@
     android:id="@+id/toolbar"
     android:background="@color/toolbar"
     android:gravity="center"
-    app:titleTextColor="@color/toolbarText"
-    >
+    app:titleTextColor="@color/toolbarText">
 </androidx.appcompat.widget.Toolbar>

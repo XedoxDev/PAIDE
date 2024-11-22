@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.xedox.paide.activitys.EditorActivity;
@@ -26,13 +26,20 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.VH> {
     public class VH extends RecyclerView.ViewHolder {
 
         public TextView name;
-        public ImageView more;
+        public View more, bg;
 
         public VH(View parent) {
             super(parent);
-            parent.setBackgroundResource(R.drawable.ic_ripple);
             name = parent.findViewById(R.id.name);
             more = parent.findViewById(R.id.more);
+            bg = parent.findViewById(R.id.bg);
+            bg.setOnClickListener(
+                    (v) -> {
+                        Intent i = new Intent(context, EditorActivity.class);
+                        i.putExtra("name", name.getText());
+                        context.startActivity(i);
+                        context.finish();
+                    });
             more.setOnClickListener(
                     (v) -> {
                         String open = context.getString(R.string.open_project);

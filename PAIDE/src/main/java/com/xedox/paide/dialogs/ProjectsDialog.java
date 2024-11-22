@@ -1,6 +1,7 @@
 package com.xedox.paide.dialogs;
 
 import android.app.Activity;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,6 @@ public class ProjectsDialog implements Dialog {
     public void build() {
         builder = new MaterialAlertDialogBuilder(context);
         adapter = new ProjectsAdapter(context, getProjects(context));
-        //builder.setBackground();
         builder.setTitle(R.string.projects_menu);
         
         View view = LayoutInflater.from(context).inflate(R.layout.projects_layout, null, false);

@@ -1,36 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="52dp"
     android:layout_width="match_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:id="@+id/parent"
-    android:background="@color/background">
-    <RelativeLayout
-        android:clickable="true"
+    android:id="@+id/parent">
+    <Button
+        android:id="@+id/bg"
+        android:background="@drawable/ic_rvi_ripple"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <TextView
         android:layout_height="50dp"
-        android:layout_width="wrap_content">
+        android:layout_width="wrap_content"
+        android:gravity="left|center_vertical"
+        android:layout_margin="10dp"
+        android:textSize="25sp"
+        android:textColor="@color/text"
+        android:id="@+id/name" />
 
-        <TextView
-            android:layout_height="50dp"
-            android:layout_width="wrap_content"
-            android:gravity="left|center_vertical"
-            android:layout_margin="10dp"
-            android:textSize="25sp"
-            android:textColor="@color/text"
-            android:id="@+id/name" />
+    <ImageButton
+        android:layout_height="50dp"
+        android:layout_width="45dp"
+        android:src="@drawable/ic_more"
+        style="@style/Widget.AppCompat.ActionButton"
+        android:layout_margin="5dp"
+        android:tint="@color/tintDark"
+        android:layout_alignParentRight="true"
+        android:id="@+id/more" />
 
-        <ImageButton
-            android:layout_height="50dp"
-            android:layout_width="50dp"
-            android:layout_margin="5dp"
-            android:layout_alignParentRight="true"
-            android:id="@+id/more"
-            android:tint="@color/divider"
-            style="@style/Widget.AppCompat.ActionButton"
-            android:src="@drawable/ic_more" />
-
-    </RelativeLayout>
-</LinearLayout>
+</RelativeLayout>

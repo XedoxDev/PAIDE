@@ -99,7 +99,7 @@
                         android:layout_width="50dp"
                         android:src="@drawable/ic_new_file"
                         style="@style/Widget.AppCompat.ActionButton"
-                        android:id="@+id/createFile" />
+                        android:id="@+id/mkfile" />
 
                     <ImageButton
                         android:layout_height="50dp"
