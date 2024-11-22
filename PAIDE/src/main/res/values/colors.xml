@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#ffffff</color>
+    <color name="primary">#17A1A4</color>
+    <color name="primaryVariant">#4EB7BB</color>
+    <color name="primaryDark">#016469</color>
+    <color name="toolbar">#016469</color>
+    <color name="tint">#ffffff</color>
+    <color name="divider">#000000</color>
+    <color name="icon_in_drawer">#000000</color>
+    <color name="toolbarText">#ffffff</color>
+    <color name="text">#000000</color>
+    <color name="selectItem">#000000</color>
+    <color name="selectItemBackground">#ffffff</color>
+</resources>

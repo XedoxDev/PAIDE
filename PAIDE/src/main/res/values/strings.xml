@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- application -->
+    <string name="app_name">Processing AIDE</string>
+    <string name="app_version">v0.0.1a</string>
+    
+    <!-- project strings -->
+    <string name="create_project">Создать проект</string>
+    <string name="delete_project">Удалить проект</string>
+    <string name="open_project">Открыть проект</string>
+    
+    <string name="project_name">Название проекта</string>
+    <string name="projects_menu">Меню проектов</string>
+   
+    <!-- dialog strings -->
+    <string name="create">Создать</string>
+    <string name="delete">Удалить</string>
+    <string name="rename">Переименовать</string>
+    <string name="cancel">Отмена</string>
+    
+    <!-- settings -->
+    <string name="settings">Настройки</string>
+    
+    <!-- errs -->
+    <string name="err1">Не удалось определить тип файла.</string>
+    
+    <!-- menus -->
+    <string name="save">Сохранить</string>
+    <string name="run">Запустить</string>
+    <string name="format_code">Форматировать код</string>
+</resources>
