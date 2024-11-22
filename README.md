@@ -1,5 +1,5 @@
 # PAIDE
-Findind second developer :>
+Finding second developer :>
 
 # About
 **App name**: _Processing AIDE_
