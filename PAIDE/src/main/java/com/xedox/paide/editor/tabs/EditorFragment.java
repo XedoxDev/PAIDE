@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.tabs.TabLayout;
 import com.xedox.paide.editor.Editor;
 import com.xedox.paide.editor.editors.soraeditor.SoraEditor;
+import com.xedox.paide.utils.FastTask;
 import com.xedox.paide.utils.SketchFile;
 
 import io.github.rosemoe.sora.langs.textmate.TextMateLanguage;
@@ -71,15 +72,12 @@ public class EditorFragment extends Fragment {
                         soraEditor.setEditorLanguage(language);
                     }
                     editor.getView().setLayoutParams(layoutParams);
-                    try {
-                        editor.setCode(sketch.read());
-                    } catch (Exception e) {
-                        Log.e("EditorFragment", "Error reading file content", e);
-                    }
+
                     break;
                 }
         }
 
+        editor.setCode(sketch.read());
         parent.addView(editor.getView());
 
         return parent;

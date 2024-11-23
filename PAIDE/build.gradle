@@ -47,4 +47,6 @@ dependencies {
  
     // other libs
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    
+    implementation 'org.ow2.asm:asm:9.4' 
 }

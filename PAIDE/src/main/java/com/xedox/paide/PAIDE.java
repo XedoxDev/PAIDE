@@ -2,13 +2,13 @@ package com.xedox.paide;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.Settings;
 import android.widget.Toast;
 import com.xedox.paide.project.Project;
+import com.xedox.paide.utils.FastTask;
 import io.github.rosemoe.sora.langs.textmate.registry.FileProviderRegistry;
 import io.github.rosemoe.sora.langs.textmate.registry.GrammarRegistry;
 import io.github.rosemoe.sora.langs.textmate.registry.ThemeRegistry;
@@ -93,7 +93,6 @@ public class PAIDE extends Application {
     }
 
     public static List<Project> getProjects(Activity activity) {
-
         List<Project> projects = new ArrayList<>();
         if (requestManagePremission(activity)) {
             File[] files = projectsDir.listFiles();
@@ -107,30 +106,33 @@ public class PAIDE extends Application {
     }
 
     public static void initSchemes() {
-        try {
-            FileProviderRegistry.getInstance()
-                    .addFileProvider(new AssetsFileResolver(context.getAssets()));
-            var themeRegistry = ThemeRegistry.getInstance();
-            var name = "xscheme";
-            var themeAssetsPath = "soraeditor/themes/" + name + ".json";
-            var model =
-                    new ThemeModel(
-                            IThemeSource.fromInputStream(
-                                    FileProviderRegistry.getInstance()
-                                            .tryGetInputStream(themeAssetsPath),
-                                    themeAssetsPath,
-                                    null),
-                            name);
-            try {
-                themeRegistry.loadTheme(model);
-            } catch (Exception err) {
-                err.printStackTrace();
-            }
-            ThemeRegistry.getInstance().setTheme("XedoxScheme");
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        GrammarRegistry.getInstance().loadGrammars("soraeditor/languages.json");
+        FastTask.execute(
+                () -> {
+                    try {
+                        FileProviderRegistry.getInstance()
+                                .addFileProvider(new AssetsFileResolver(context.getAssets()));
+                        var themeRegistry = ThemeRegistry.getInstance();
+                        var name = "xscheme";
+                        var themeAssetsPath = "soraeditor/themes/" + name + ".json";
+                        var model =
+                                new ThemeModel(
+                                        IThemeSource.fromInputStream(
+                                                FileProviderRegistry.getInstance()
+                                                        .tryGetInputStream(themeAssetsPath),
+                                                themeAssetsPath,
+                                                null),
+                                        name);
+                        try {
+                            themeRegistry.loadTheme(model);
+                        } catch (Exception err) {
+                            err.printStackTrace();
+                        }
+                        ThemeRegistry.getInstance().setTheme("XedoxScheme");
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    GrammarRegistry.getInstance().loadGrammars("soraeditor/languages.json");
+                });
     }
 }

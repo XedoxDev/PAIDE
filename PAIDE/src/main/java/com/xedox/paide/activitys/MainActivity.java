@@ -14,7 +14,9 @@ import com.xedox.paide.dialogs.Dialog;
 import com.xedox.paide.dialogs.ProjectsDialog;
 
 public class MainActivity extends AppCompatActivity {
-
+    
+    private static final String TAG = "MainActivity";
+    
     private MaterialButton createProject, openProject;
 
     @Override

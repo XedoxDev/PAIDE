@@ -83,6 +83,7 @@ public class Project {
     }
 
     public File getSrc() {
-        return this.src;
+        return src;
     }
+    
 }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.xedox.paide.editor.Editor;
+import com.xedox.paide.editor.editors.soraeditor.SoraEditor;
 import com.xedox.paide.utils.SketchFile;
 import java.io.File;
 import java.util.ArrayList;
@@ -34,11 +35,13 @@ public class TabsAdapter extends FragmentStateAdapter {
     public void add(SketchFile file) {
         var ef = new EditorFragment(Editor.SORA_EDITOR, file);
         list.add(ef);
-        
+
         notifyItemInserted(list.size() - 1);
     }
 
     public void remove(int pos) {
+        if (list.get(pos).getEditor() instanceof SoraEditor)
+            ((SoraEditor) list.get(pos).getEditor()).release();
         list.remove(pos);
         notifyItemRemoved(pos);
     }
@@ -55,7 +58,7 @@ public class TabsAdapter extends FragmentStateAdapter {
         this.list = list;
         notifyDataSetChanged();
     }
-    
+
     public String getNameForTab(int pos) {
         return list.get(pos).getNameForTab();
     }

@@ -1,5 +1,6 @@
 package com.xedox.paide.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -33,7 +34,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class EditorActivity extends AppCompatActivity {
-
+    
+    private static final String TAG = "EditorActivity";
+    
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
@@ -226,12 +229,10 @@ public class EditorActivity extends AppCompatActivity {
             for (EditorFragment ef : adapter.getEditors()) {
                 ef.save();
             }
-            /*
             Intent i = new Intent(this, PreviewActivity.class);
             i.putExtra("name", project.getName());
             startActivity(i);
             finish();
-            */
         }
         if (item.getItemId() == R.id.format_code) {
             CodeFormat.formate(

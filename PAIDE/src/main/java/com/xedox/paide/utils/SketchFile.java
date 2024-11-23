@@ -13,6 +13,10 @@ public class SketchFile extends File {
         super(path, name);
     }
     
+    public SketchFile(String path, String name) {
+        super(new File(path), name);
+    }
+    
     public SketchFile(File f) {
         super(f.getAbsolutePath(), f.getName());
     }
