@@ -41,12 +41,13 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     
     // Sora Editor
-    implementation(platform("io.github.Rosemoe.sora-editor:bom:0.23.2"))
+    implementation(platform("io.github.Rosemoe.sora-editor:bom:0.23.4"))
     implementation("io.github.Rosemoe.sora-editor:editor")
     implementation("io.github.Rosemoe.sora-editor:language-textmate")
  
     // other libs
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     
+    // lib for generate byte-code
     implementation 'org.ow2.asm:asm:9.4' 
 }

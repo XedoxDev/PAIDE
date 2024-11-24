@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.provider.Settings;
 import android.widget.Toast;
 import com.xedox.paide.project.Project;
+import com.xedox.paide.utils.AssetsUtils;
 import com.xedox.paide.utils.FastTask;
 import io.github.rosemoe.sora.langs.textmate.registry.FileProviderRegistry;
 import io.github.rosemoe.sora.langs.textmate.registry.GrammarRegistry;
@@ -42,6 +43,7 @@ public class PAIDE extends Application {
         super.onCreate();
         context = this;
         initSchemes();
+        copyD8_Jar();
     }
 
     public static boolean requestManagePremission(Activity activity) {
@@ -62,13 +64,9 @@ public class PAIDE extends Application {
         }
     }
 
-    public static Toast mktest(String text) {
+    public static void mktest(String text) {
         // off for release apk
-        Toast toast = new Toast(context);
-        toast.setText(text);
-        toast.setDuration(Toast.LENGTH_LONG);
-        toast.show();
-        return toast;
+        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     }
 
     public static void writeFile(File file, String text) {
@@ -112,7 +110,7 @@ public class PAIDE extends Application {
                         FileProviderRegistry.getInstance()
                                 .addFileProvider(new AssetsFileResolver(context.getAssets()));
                         var themeRegistry = ThemeRegistry.getInstance();
-                        var name = "xscheme";
+                        var name = "processing";
                         var themeAssetsPath = "soraeditor/themes/" + name + ".json";
                         var model =
                                 new ThemeModel(
@@ -127,12 +125,29 @@ public class PAIDE extends Application {
                         } catch (Exception err) {
                             err.printStackTrace();
                         }
-                        ThemeRegistry.getInstance().setTheme("XedoxScheme");
+                        ThemeRegistry.getInstance().setTheme("XProcessing");
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     GrammarRegistry.getInstance().loadGrammars("soraeditor/languages.json");
                 });
+    }
+
+    public static void copyD8_Jar() {
+        try {
+            FastTask.execute(
+                    () -> {
+                        if (!new File(projectsDir, "d8.jar").exists()) {
+                            new File(projectsDir, "d8.jar").mkdirs();
+                            AssetsUtils.copyAsset(
+                                    context,
+                                    "d8.jar",
+                                    new File(projectsDir, "d8.jar").getAbsolutePath());
+                        }
+                    });
+        } catch (Exception e) {
+            mktest(e.toString());
+        }
     }
 }

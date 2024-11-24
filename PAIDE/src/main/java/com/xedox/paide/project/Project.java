@@ -1,5 +1,6 @@
 package com.xedox.paide.project;
 
+import android.content.res.AssetManager;
 import java.io.File;
 import static com.xedox.paide.PAIDE.*;
 
@@ -24,18 +25,19 @@ public class Project {
         } catch (Exception err) {
             err.printStackTrace();
         }
+        AssetManager assets = context.getAssets();
         writeFile(
                 main,
                 """
                 void setup() {
-                    size(400, 400);
-                    // setup programm
+                  size(400, 400);
+                  // setup programm
                 }
 
                 void draw() {
-                    fill(#FF0000); // RED
-                    rect(0, 0, 100, 100);
-                    // render graphics
+                  fill(#FF0000); // RED
+                  rect(0, 0, 100, 100);
+                  // render graphics
                 }
                 """);
     }

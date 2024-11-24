@@ -2,9 +2,19 @@
     "languages": [
         {
             "grammar": "soraeditor/processing/tmLanguage.json",
-            "name": "processing",
+            "name": "Processing",
             "scopeName": "source.pde",
-            "languageConfiguration": "soraeditor/processing/language-configuration.json"
+            "languageConfiguration": "soraeditor/processing/language-configuration.json",
+            "snippets": [
+                {
+                    "name": "name",
+                    "prefix": "test",
+                    "body": [
+                        "hiii, its the test"
+                    ],
+                    "description": "teeeeeeeest"
+                }
+            ]
         }
     ]
 }

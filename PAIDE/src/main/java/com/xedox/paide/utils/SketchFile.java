@@ -18,7 +18,7 @@ public class SketchFile extends File {
     }
     
     public SketchFile(File f) {
-        super(f.getAbsolutePath(), f.getName());
+        super(f.getAbsoluteFile(), f.getName());
     }
     
     public String read() {

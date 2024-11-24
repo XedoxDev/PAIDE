@@ -2,13 +2,10 @@ package com.xedox.paide.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import static com.xedox.paide.PAIDE.*;
 import com.xedox.paide.project.Project;
 import com.xedox.paide.utils.CodeBinding;
-import com.xedox.paide.utils.PClassLoader;
 import com.xedox.paide.utils.ProcessingCompiler;
 import com.xedox.paide.utils.SketchFile;
 
@@ -16,10 +13,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import processing.android.PFragment;
-import processing.core.PApplet;
+import com.android.tools.r8.D8;
 
 public class PreviewActivity extends AppCompatActivity {
 
@@ -31,21 +28,11 @@ public class PreviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         project = new Project(getIntent().getStringExtra("name"));
-        String code = generateProcessingCode();
-
+        compileClass();
         try {
-            File buildDir = new File(project.getProjectDir(), "build/");
-            buildDir.mkdirs();
-            File buildFile = new File(buildDir, "MySketch.class");
-            byte[] byteCode = ProcessingCompiler.compileProcessingCode(code);
-            try (FileOutputStream fos = new FileOutputStream(buildFile)) {
-                fos.write(byeCode);
-            } catch(Exception e){
-                e.printStackTrace();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            back();
+            dexingClass();
+        } catch (Exception err) {
+            err.printStackTrace();
         }
     }
 
@@ -57,21 +44,16 @@ public class PreviewActivity extends AppCompatActivity {
     private String generateProcessingCode() {
         List<SketchFile> codes = new ArrayList<>();
         for (File file : project.getSrc().listFiles()) {
-            if (file.getName().endsWith(".pde")) {
-                codes.add(new SketchFile(file.getAbsolutePath(), file.getName()));
+            SketchFile sf = new SketchFile(file);
+            if (sf.getExtension().equals(".pde")) {
+                codes.add(sf);
             }
         }
         return """
                 public class MySketch extends processing.core.PApplet {
-                    public void settings() { size(400, 400); }
-                    public void setup() {
                         """
                 + CodeBinding.bind(codes.toArray(new SketchFile[0]))
                 + """
-                    }
-                    public void draw() {
-
-                    }
                 }
                 """;
     }
@@ -82,5 +64,37 @@ public class PreviewActivity extends AppCompatActivity {
         startActivity(i);
         finish();
     }
-}
 
+    private void compileClass() {
+        String code = generateProcessingCode();
+        try {
+            File buildDir = new File(project.getProjectDir(), "build/");
+            buildDir.mkdirs();
+            File buildFile = new File(buildDir, "MySketch.class");
+            byte[] byteCode = ProcessingCompiler.compileProcessingCode(code);
+            try (FileOutputStream fos = new FileOutputStream(buildFile)) {
+                fos.write(byteCode);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            back();
+        }
+    }
+
+    private void dexingClass() throws IOException, InterruptedException {
+        File classDir = new File(project.getProjectDir(), "build/MySketch.class");
+        File dexDir = new File(project.getProjectDir(), "build/MySketch.dex");
+        List<String> command =
+                Arrays.asList(
+                        "d8",
+                        "--min-api",
+                        String.valueOf(30),
+                        "--output",
+                        dexDir.getAbsolutePath(),
+                        classDir.getAbsolutePath());
+
+        new ProcessBuilder(command).start().waitFor();
+    }
+}
