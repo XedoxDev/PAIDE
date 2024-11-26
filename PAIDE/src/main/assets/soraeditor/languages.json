@@ -4,17 +4,7 @@
             "grammar": "soraeditor/processing/tmLanguage.json",
             "name": "Processing",
             "scopeName": "source.pde",
-            "languageConfiguration": "soraeditor/processing/language-configuration.json",
-            "snippets": [
-                {
-                    "name": "name",
-                    "prefix": "test",
-                    "body": [
-                        "hiii, its the test"
-                    ],
-                    "description": "teeeeeeeest"
-                }
-            ]
+            "languageConfiguration": "soraeditor/processing/language-configuration.json"
         }
     ]
 }

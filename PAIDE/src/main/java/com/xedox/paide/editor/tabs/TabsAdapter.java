@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.xedox.paide.editor.Editor;
 import com.xedox.paide.editor.editors.soraeditor.SoraEditor;
-import com.xedox.paide.utils.SketchFile;
+import com.xedox.paide.utils.FileX;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class TabsAdapter extends FragmentStateAdapter {
         return list.get(pos);
     }
 
-    public void add(SketchFile file) {
+    public void add(FileX file) {
         var ef = new EditorFragment(Editor.SORA_EDITOR, file);
         list.add(ef);
 

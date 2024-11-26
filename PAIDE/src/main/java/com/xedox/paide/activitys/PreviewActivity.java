@@ -3,20 +3,24 @@ package com.xedox.paide.activitys;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import com.android.tools.r8.D8;
 import static com.xedox.paide.PAIDE.*;
 import com.xedox.paide.project.Project;
 import com.xedox.paide.utils.CodeBinding;
+import com.xedox.paide.utils.IFile;
 import com.xedox.paide.utils.ProcessingCompiler;
-import com.xedox.paide.utils.SketchFile;
+import com.xedox.paide.utils.FileX;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import com.android.tools.r8.D8;
 
 public class PreviewActivity extends AppCompatActivity {
 
@@ -33,6 +37,7 @@ public class PreviewActivity extends AppCompatActivity {
             dexingClass();
         } catch (Exception err) {
             err.printStackTrace();
+            mktest(err.toString());
         }
     }
 
@@ -42,9 +47,9 @@ public class PreviewActivity extends AppCompatActivity {
     }
 
     private String generateProcessingCode() {
-        List<SketchFile> codes = new ArrayList<>();
+        List<FileX> codes = new ArrayList<>();
         for (File file : project.getSrc().listFiles()) {
-            SketchFile sf = new SketchFile(file);
+            FileX sf = new FileX(file);
             if (sf.getExtension().equals(".pde")) {
                 codes.add(sf);
             }
@@ -52,7 +57,7 @@ public class PreviewActivity extends AppCompatActivity {
         return """
                 public class MySketch extends processing.core.PApplet {
                         """
-                + CodeBinding.bind(codes.toArray(new SketchFile[0]))
+                + CodeBinding.bind(codes.toArray(new FileX[0]))
                 + """
                 }
                 """;
@@ -83,18 +88,51 @@ public class PreviewActivity extends AppCompatActivity {
         }
     }
 
-    private void dexingClass() throws IOException, InterruptedException {
-        File classDir = new File(project.getProjectDir(), "build/MySketch.class");
-        File dexDir = new File(project.getProjectDir(), "build/MySketch.dex");
-        List<String> command =
-                Arrays.asList(
-                        "d8",
-                        "--min-api",
-                        String.valueOf(30),
-                        "--output",
-                        dexDir.getAbsolutePath(),
-                        classDir.getAbsolutePath());
+    private void dexingClass() {
+        /* not work, premission denied - execulatble jar files :(
+        File build = new File(project.getProjectDir(), "build/");
 
-        new ProcessBuilder(command).start().waitFor();
+        IFile classDir = new FileX(build, "MySketch.class");
+        IFile dexDir = new FileX(build, "MySketch.dex");
+        IFile debug = new FileX(build, "debug.txt");
+        debug.mkfile();
+
+        IFile d8Path = new FileX(projectsDir.getAbsolutePath(), "d8.jar");
+        if (!d8Path.exists()) {
+            return;
+        }
+
+        try {
+            String[] command = {
+                d8Path.toString(),
+                "--output=",
+                dexDir.getFullPath(),
+                classDir.getFullPath()
+            };
+
+            ProcessBuilder processBuilder = new ProcessBuilder(command);
+            Process process = processBuilder.start();
+
+            BufferedReader reader =
+                    new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                debug.println(line);
+            }
+
+            int exitCode = process.waitFor();
+            if (exitCode == 0) {
+                System.out.println("Dex compilation successful!");
+                mkToast("dexing successful");
+            } else {
+                System.err.println("Dex compilation exit code: " + exitCode);
+                mkToast("dexing unsuccessful");
+            }
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            mkToast(e.toString());
+        }
+        */
     }
 }

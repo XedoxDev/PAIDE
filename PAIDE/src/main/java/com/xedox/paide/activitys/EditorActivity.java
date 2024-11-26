@@ -27,16 +27,16 @@ import com.xedox.paide.editor.tabs.TabsAdapter;
 import com.xedox.paide.project.Project;
 import com.xedox.paide.tools.CodeFormat;
 import com.xedox.paide.utils.ContextMenu;
-import com.xedox.paide.utils.SketchFile;
+import com.xedox.paide.utils.FileX;
 import io.github.rosemoe.sora.util.ArrayList;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 public class EditorActivity extends AppCompatActivity {
-    
+
     private static final String TAG = "EditorActivity";
-    
+
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
@@ -120,7 +120,7 @@ public class EditorActivity extends AppCompatActivity {
 
         for (File f : project.getSrc().listFiles()) {
             if (f.isFile()) {
-                adapter.add(new SketchFile(project.getSrc(), f.getName()));
+                adapter.add(new FileX(project.getSrc(), f.getName()));
                 Log.e("EditorActivtity", f.getName()); // debug
             }
         }
@@ -173,7 +173,7 @@ public class EditorActivity extends AppCompatActivity {
 
     private void openFile(File file) {
         try {
-            SketchFile sf = new SketchFile(project.getSrc(), file.getName());
+            FileX sf = new FileX(project.getSrc(), file.getName());
             for (int i = 0; i < tabs.getTabCount(); i++) {
                 if (tabs.getTabAt(i).getText().toString().equals(sf.getName())) {
                     return;
@@ -194,18 +194,6 @@ public class EditorActivity extends AppCompatActivity {
             filesAdapter.setList(f);
         } else {
             filesAdapter.setList(new ArrayList<File>());
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        for (EditorFragment ef : adapter.getEditors()) {
-            Editor ed = (SoraEditor) ef.getEditor();
-            if (ed instanceof SoraEditor) {
-                SoraEditor editor = (SoraEditor) ed;
-                editor.release();
-            }
         }
     }
 

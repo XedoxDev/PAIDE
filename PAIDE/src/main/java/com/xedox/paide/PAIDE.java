@@ -8,7 +8,6 @@ import android.os.Environment;
 import android.provider.Settings;
 import android.widget.Toast;
 import com.xedox.paide.project.Project;
-import com.xedox.paide.utils.AssetsUtils;
 import com.xedox.paide.utils.FastTask;
 import io.github.rosemoe.sora.langs.textmate.registry.FileProviderRegistry;
 import io.github.rosemoe.sora.langs.textmate.registry.GrammarRegistry;
@@ -23,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.tm4e.core.registry.IThemeSource;
+import xedox.assetspp.Assets;
 
 public class PAIDE extends Application {
 
@@ -32,16 +32,13 @@ public class PAIDE extends Application {
 
     public static final byte MANAGE_REQUEST_CODE = 1;
 
-    static {
-        projectsDir =
-                new File(Environment.getExternalStorageDirectory().getPath(), "PAIDE-Projects");
-        if (!projectsDir.exists()) projectsDir.mkdir();
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();
         context = this;
+        projectsDir =
+                new File(Environment.getExternalStorageDirectory().getPath(), "PAIDE-Projects");
+        if (!projectsDir.exists()) projectsDir.mkdir();
         initSchemes();
         copyD8_Jar();
     }
@@ -67,6 +64,10 @@ public class PAIDE extends Application {
     public static void mktest(String text) {
         // off for release apk
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+    }
+    
+    public static void mkToast(String txt) {
+        Toast.makeText(context, txt, Toast.LENGTH_SHORT).show();
     }
 
     public static void writeFile(File file, String text) {
@@ -136,18 +137,14 @@ public class PAIDE extends Application {
 
     public static void copyD8_Jar() {
         try {
-            FastTask.execute(
-                    () -> {
-                        if (!new File(projectsDir, "d8.jar").exists()) {
-                            new File(projectsDir, "d8.jar").mkdirs();
-                            AssetsUtils.copyAsset(
-                                    context,
-                                    "d8.jar",
-                                    new File(projectsDir, "d8.jar").getAbsolutePath());
-                        }
-                    });
+            File d8 = new File(projectsDir, "d8.jar");
+            if (!d8.exists()) {
+                Assets.from(context).asset("d8.jar").toPath(projectsDir.getAbsolutePath()).copy();
+                mktest("d8 successfull copyed");
+            }
         } catch (Exception e) {
             mktest(e.toString());
+            mktest("d8 unsuccessfull copyed");
         }
     }
 }

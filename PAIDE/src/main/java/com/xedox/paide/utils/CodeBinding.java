@@ -1,10 +1,10 @@
 package com.xedox.paide.utils;
 
 public class CodeBinding {
-    public static String bind(SketchFile... codes) {
+    public static String bind(FileX... codes) {
         StringBuilder buffer = new StringBuilder();
-        SketchFile main = null;
-        for (SketchFile file : codes) {
+        FileX main = null;
+        for (FileX file : codes) {
             if (file.getName() == "main.pde") {
                 main = file;
                 continue;

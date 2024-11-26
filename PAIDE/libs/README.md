@@ -1,7 +1,11 @@
-What do I use these libraries for? Below is a description.
+# Using libs
 
-JavaMode.jar and pde.jar i use for code format code. i download its files from APDE.
+> What do I use these libraries for? Below is a description.
 
-processing-core.jar - Android processing tools, i download its from official Processing AndroidMode/processing-core.zip (i renamed its to .jar)
+> JavaMode.jar and pde.jar i use for code format code. i download its files from APDE.
 
-d8.jar - translator .class to .dex. I take its from android-sdk/build-tools/30.0.2/lib
+> processing-core.jar - Android processing tools, i download its from official Processing AndroidMode/processing-core.zip (i renamed its to .jar)
+
+Assetspp (Assets++) - my lib for simpled work with assets
+
+d8.jar - use for compiling Sketch.class to .dex. I take its from android-sdk. And use APDE code for learning.

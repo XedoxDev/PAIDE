@@ -7,40 +7,36 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabLayout;
 import com.xedox.paide.editor.Editor;
 import com.xedox.paide.editor.editors.soraeditor.SoraEditor;
-import com.xedox.paide.utils.FastTask;
-import com.xedox.paide.utils.SketchFile;
+import com.xedox.paide.utils.FileX;
 
-import io.github.rosemoe.sora.langs.textmate.TextMateLanguage;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.xedox.paide.utils.TextMateLanguage;
+// import io.github.rosemoe.sora.langs.textmate.TextMateLanguage;
 
 public class EditorFragment extends Fragment {
+    
+    public String TAG = "EditorFragment";
 
     private Editor editor;
-    private byte type;
-    private SketchFile sketch;
-    private String lang;
+    private final byte type;
+    private final FileX sketch;
     private TabLayout.Tab tab;
 
-    public EditorFragment(byte type, SketchFile sketch) {
+    public EditorFragment(byte type, FileX sketch) {
         this.type = type;
         this.sketch = sketch;
     }
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RelativeLayout parent = new RelativeLayout(requireContext());
-        lang = sketch.getName().substring(sketch.getName().lastIndexOf("."));
-
         FrameLayout.LayoutParams layoutParams =
                 new FrameLayout.LayoutParams(
                         FrameLayout.LayoutParams.MATCH_PARENT,
@@ -48,45 +44,34 @@ public class EditorFragment extends Fragment {
 
         switch (type) {
             case Editor.SORA_EDITOR:
-                {
-                    editor = new SoraEditor(requireContext());
-                    SoraEditor soraEditor = (SoraEditor) editor;
-                    String languageScopeName =
-                            "source"
-                                    + sketch.getName()
-                                            .substring(
-                                                    sketch.getName().lastIndexOf("."),
-                                                    sketch.getName().length());
-                    TextMateLanguage language = null;
-
-                    try {
-                        language = TextMateLanguage.create(languageScopeName, true);
-                    } catch (Exception e) {
-                        Log.e(
-                                "EditorFragment",
-                                "Error creating TextMateLanguage: " + languageScopeName,
-                                e);
-                    }
-
-                    if (language != null) {
-                        soraEditor.setEditorLanguage(language);
-                    }
-                    editor.getView().setLayoutParams(layoutParams);
-
-                    break;
-                }
+                createSoraEditor(layoutParams);
+                break;
         }
 
-        editor.setCode(sketch.read());
         parent.addView(editor.getView());
-
+        editor.setCode(sketch.read());
         return parent;
+    }
+
+    private void createSoraEditor(FrameLayout.LayoutParams layoutParams) {
+        editor = new SoraEditor(requireContext());
+        SoraEditor soraEditor = (SoraEditor) editor;
+        String extension = sketch.getExtension();
+        String languageScopeName = "source" + extension;
+        try {
+            TextMateLanguage language = new TextMateLanguage(languageScopeName);
+            soraEditor.setEditorLanguage(language);
+        } catch (Exception e) {
+            Log.e("EditorFragment", "Error creating TextMateLanguage: " + languageScopeName, e);
+        }
+
+        soraEditor.getView().setLayoutParams(layoutParams);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (editor != null && editor instanceof SoraEditor) {
+        if (editor instanceof SoraEditor) {
             ((SoraEditor) editor).release();
         }
     }
@@ -99,7 +84,7 @@ public class EditorFragment extends Fragment {
         return type;
     }
 
-    public SketchFile getSketch() {
+    public FileX getSketch() {
         return sketch;
     }
 
@@ -108,7 +93,7 @@ public class EditorFragment extends Fragment {
     }
 
     public TabLayout.Tab getTab() {
-        return this.tab;
+        return tab;
     }
 
     public void setTab(TabLayout.Tab tab) {
@@ -119,7 +104,7 @@ public class EditorFragment extends Fragment {
         try {
             sketch.write(editor.getCode());
         } catch (Exception e) {
-            Log.e("EditorFragment", "Error saving file", e);
+            Log.e(TAG, "Error saving file", e);
         }
     }
 }

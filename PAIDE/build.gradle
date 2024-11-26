@@ -36,18 +36,16 @@ android {
 }
 
 dependencies {
-    //androidx & material design
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     
-    // Sora Editor
-    implementation(platform("io.github.Rosemoe.sora-editor:bom:0.23.4"))
-    implementation("io.github.Rosemoe.sora-editor:editor")
-    implementation("io.github.Rosemoe.sora-editor:language-textmate")
- 
-    // other libs
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation("org.ow2.asm:asm:9.4")  // lib for generate byte-code
     
-    // lib for generate byte-code
-    implementation 'org.ow2.asm:asm:9.4' 
+    implementation("io.github.Rosemoe.sora-editor:editor") // Sora Editor
+    implementation("io.github.Rosemoe.sora-editor:language-textmate")   // Sora Editor
+    implementation(platform("io.github.Rosemoe.sora-editor:bom:0.23.4")) // Sora Editor
+    
+    implementation("com.google.code.gson:gson:2.11.0") // lib for use json
+ 
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar']) // other libs
 }

@@ -12,3 +12,5 @@ Finding second developer :>
 
 # Thanks <3
 > [**APDE**](https://github.com/Calsign/APDE.git) - thanks for idea, code, preview code and more <3
+
+> [**🐳**](https://t.me/BlueWhaleYT) - thanks for help to sora editor settinging <3
